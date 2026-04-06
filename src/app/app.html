@@ -1,0 +1,81 @@
+@if (!appService.user()) {
+  <app-login></app-login>
+} @else {
+  <div class="min-h-screen bg-[#050505] text-white font-sans selection:bg-pink-500/30 overflow-x-hidden">
+    <!-- High-Fashion Ambient Background -->
+    <div class="fixed top-[-20%] left-[-10%] w-[60%] h-[60%] bg-purple-900/20 blur-[150px] rounded-full pointer-events-none mix-blend-screen"></div>
+    <div class="fixed bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-cyan-900/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen"></div>
+
+    <main class="container mx-auto px-4 pt-8 pb-32 max-w-lg relative z-10">
+      @switch (appService.currentPage()) {
+        @case ('pulse') { <app-pulse></app-pulse> }
+        @case ('clubhouses') { <app-clubhouses></app-clubhouses> }
+        @case ('chat') { <app-chat></app-chat> }
+        @case ('profile') { <app-profile></app-profile> }
+      }
+    </main>
+
+    <!-- Glassmorphism Bottom Navigation -->
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center bg-white/5 backdrop-blur-3xl px-2 py-2 rounded-full border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.8)] gap-1">
+      <button 
+        (click)="appService.currentPage.set('pulse')"
+        class="flex flex-col items-center justify-center w-16 h-14 rounded-full transition-all duration-300"
+        [class.bg-white]="appService.currentPage() === 'pulse'"
+        [class.text-black]="appService.currentPage() === 'pulse'"
+        [class.shadow-[0_0_20px_rgba(255,255,255,0.3)]]="appService.currentPage() === 'pulse'"
+        [class.scale-105]="appService.currentPage() === 'pulse'"
+        [class.text-white]="appService.currentPage() !== 'pulse'"
+        [class.text-opacity-40]="appService.currentPage() !== 'pulse'"
+        [class.hover:text-opacity-80]="appService.currentPage() !== 'pulse'"
+      >
+        <div class="mb-0.5"><mat-icon class="text-[20px] w-[20px] h-[20px]">auto_awesome</mat-icon></div>
+        <span class="text-[9px] uppercase tracking-widest" [class.font-bold]="appService.currentPage() === 'pulse'" [class.font-medium]="appService.currentPage() !== 'pulse'">Pulse</span>
+      </button>
+
+      <button 
+        (click)="appService.currentPage.set('clubhouses')"
+        class="flex flex-col items-center justify-center w-16 h-14 rounded-full transition-all duration-300"
+        [class.bg-white]="appService.currentPage() === 'clubhouses'"
+        [class.text-black]="appService.currentPage() === 'clubhouses'"
+        [class.shadow-[0_0_20px_rgba(255,255,255,0.3)]]="appService.currentPage() === 'clubhouses'"
+        [class.scale-105]="appService.currentPage() === 'clubhouses'"
+        [class.text-white]="appService.currentPage() !== 'clubhouses'"
+        [class.text-opacity-40]="appService.currentPage() !== 'clubhouses'"
+        [class.hover:text-opacity-80]="appService.currentPage() !== 'clubhouses'"
+      >
+        <div class="mb-0.5"><mat-icon class="text-[20px] w-[20px] h-[20px]">calendar_today</mat-icon></div>
+        <span class="text-[9px] uppercase tracking-widest" [class.font-bold]="appService.currentPage() === 'clubhouses'" [class.font-medium]="appService.currentPage() !== 'clubhouses'">Clubs</span>
+      </button>
+
+      <button 
+        (click)="appService.currentPage.set('chat')"
+        class="flex flex-col items-center justify-center w-16 h-14 rounded-full transition-all duration-300"
+        [class.bg-white]="appService.currentPage() === 'chat'"
+        [class.text-black]="appService.currentPage() === 'chat'"
+        [class.shadow-[0_0_20px_rgba(255,255,255,0.3)]]="appService.currentPage() === 'chat'"
+        [class.scale-105]="appService.currentPage() === 'chat'"
+        [class.text-white]="appService.currentPage() !== 'chat'"
+        [class.text-opacity-40]="appService.currentPage() !== 'chat'"
+        [class.hover:text-opacity-80]="appService.currentPage() !== 'chat'"
+      >
+        <div class="mb-0.5"><mat-icon class="text-[20px] w-[20px] h-[20px]">chat_bubble_outline</mat-icon></div>
+        <span class="text-[9px] uppercase tracking-widest" [class.font-bold]="appService.currentPage() === 'chat'" [class.font-medium]="appService.currentPage() !== 'chat'">Chat</span>
+      </button>
+
+      <button 
+        (click)="appService.currentPage.set('profile')"
+        class="flex flex-col items-center justify-center w-16 h-14 rounded-full transition-all duration-300"
+        [class.bg-white]="appService.currentPage() === 'profile'"
+        [class.text-black]="appService.currentPage() === 'profile'"
+        [class.shadow-[0_0_20px_rgba(255,255,255,0.3)]]="appService.currentPage() === 'profile'"
+        [class.scale-105]="appService.currentPage() === 'profile'"
+        [class.text-white]="appService.currentPage() !== 'profile'"
+        [class.text-opacity-40]="appService.currentPage() !== 'profile'"
+        [class.hover:text-opacity-80]="appService.currentPage() !== 'profile'"
+      >
+        <div class="mb-0.5"><mat-icon class="text-[20px] w-[20px] h-[20px]">person_outline</mat-icon></div>
+        <span class="text-[9px] uppercase tracking-widest" [class.font-bold]="appService.currentPage() === 'profile'" [class.font-medium]="appService.currentPage() !== 'profile'">You</span>
+      </button>
+    </nav>
+  </div>
+}
